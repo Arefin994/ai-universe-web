@@ -4,6 +4,8 @@ const loadAI = () => {
         .then((res) => res.json())
         .then((AIs) => showAI(AIs.data.tools));
 };
+
+
 let visibleAIs = 6;
 
 function showAI(AIs) {
@@ -37,7 +39,7 @@ function showAI(AIs) {
                         <h6>${AI.published_in}</h6>
                     </div>
                      <div> 
-                        <button class="details-btn mt-4"><i class="fa-solid fa-arrow-right"></i></button>
+                        <button data-bs-toggle="modal" data-bs-target="#AImodal" onclick="modal('${AI.id}')" class="details-btn mt-4"><i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
               </div>
@@ -61,6 +63,41 @@ function showAI(AIs) {
         document.getElementById('showAll-btn').appendChild(showMoreButton)
     }
 }
+
+function modal(id){
+
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
+
+    fetch(url)
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+
+    const modalDiv = document.getElementById('modal')
+    modalDiv.innerHTML = `
+    <div class="modal fade" id="AImodal" tabindex="-1" aria-labelledby="AImodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="AImodalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+
+        
+}
+
+
 
 loadAI();
 
