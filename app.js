@@ -1,15 +1,19 @@
-const conainter = document.getElementById("aiContainer");
+const container = document.getElementById("aiContainer");
 const loadAI = () => {
     fetch("https://openapi.programming-hero.com/api/ai/tools")
         .then((res) => res.json())
         .then((AIs) => showAI(AIs.data.tools));
 };
+let visibleAIs = 6;
 
 function showAI(AIs) {
     console.log(AIs)
-
+    
     const aiContainer = document.getElementById('aiContainer')
-    for (const AI of AIs) {
+    aiContainer.innerHTML = '';
+    for (let i = 0; i < visibleAIs && i < AIs.length; i++) {
+        
+        const AI = AIs[i];
         const aiDiv = document.createElement('div');
         aiDiv.classList.add('ai');
         console.log(AI);
@@ -42,6 +46,21 @@ function showAI(AIs) {
             `;
         aiContainer.appendChild(aiDiv);
     }
+
+    if (visibleAIs < AIs.length) {
+        const showMoreButton = document.createElement('button');
+        showMoreButton.innerText = 'Show more';
+        showMoreButton.classList.add('show-more-btn', 'btn', 'btn-danger', 'p-3' ,'justify-content-center', 'align-items-center', 'mx-auto');
+        showMoreButton.addEventListener('click', () => {
+            visibleAIs += 6;
+            showAI(AIs);
+            if (visibleAIs >= AIs.length) {
+                showMoreButton.remove();
+            }
+        });
+        document.getElementById('showAll-btn').appendChild(showMoreButton)
+    }
 }
 
 loadAI();
+
