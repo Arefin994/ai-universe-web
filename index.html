@@ -67,6 +67,10 @@
         <button type="button" class="btn btn-danger p-3 justify-content-center align-items-center mx-auto">Sort by
             Date</button>
     </div>
+
+    <!-------------------- 
+        loading spinner 
+    ---------------------->
     <section id="loader" class="d-flex justify-content-center mx-auto">
         <div class="spinner-grow text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -95,6 +99,9 @@
     </section>
 
 
+    <!-------------------- 
+        Showing all AIs  
+    ---------------------->
 
     <section>
 
@@ -108,6 +115,9 @@
 
     </div>
 
+    <!----------------- 
+        Modal Showing  
+    ------------------->
 
     <div id="modal" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal fade container-fluid" id="AImodal" tabindex="-1" aria-aria-labelledby="AImodalLabel"
@@ -150,12 +160,5 @@
         JS script  
     --------------->
     <script src="app.js"></script>
-    <script>
-        const myModal = document.getElementById('myModal')
-        const myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', () => {
-            myInput.focus()
-        })
-    </script>
+    
 </body>
