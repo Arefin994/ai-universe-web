@@ -85,10 +85,10 @@ const modal = async id =>{
             <div class="d-flex">
                 <div class="modal-body my-auto mod-left">
                     <div>
-                        <h6> ${data.data.description} </h6>
+                        <h5> ${data.data.description} </h5>
                     </div>
                     <div class="d-flex">
-                        <div class="p-1 bg-light m-2 p-2">
+                        <div class="text-success p-1 bg-white m-2 p-2 fw-bold">
                             <p>
                                 ${data.data.pricing[0].price}
                             </p>
@@ -96,7 +96,7 @@ const modal = async id =>{
                                 ${data.data.pricing[0].plan}
                             </p>
                         </div>
-                        <div class="p-1 bg-light m-2 p-2">
+                        <div class="text-warning p-1 bg-white m-2 p-2 fw-bold">
                             <p>
                                 ${data.data.pricing[1].price}
                             </p>
@@ -104,7 +104,7 @@ const modal = async id =>{
                                 ${data.data.pricing[1].plan}
                             </p>
                         </div>
-                        <div class="p-1 bg-light m-2 p-2">
+                        <div class="text-danger p-1 bg-white m-2 p-2 fw-bold">
                             <p>
                                 ${data.data.pricing[2].price}
                             </p>
@@ -113,8 +113,16 @@ const modal = async id =>{
                             </p>
                         </div>
                     </div>
-                    <div>
-                        <div>
+                    <div class="d-flex">
+                        <div class="mx-2">
+                            <h3>Integrations</h3>
+                            <ul>
+                                <li>${data.data.integrations[0]}</li>
+                                <li>${data.data.integrations[1]}</li>
+                                <li>${data.data.integrations[2]}</li>
+                            </ul>
+                        </div>
+                        <div class="mx-2">
                             <h3>Features</h3>
                             <ul>
                                 <li>${data.data.features[1].feature_name}</li>
@@ -122,15 +130,12 @@ const modal = async id =>{
                                 <li>${data.data.features[3].feature_name}</li>
                             </ul>
                         </div>
-                        <div>
-
-                        </div>
                     </div>
                 </div>
                 <div class="modal-body">
                     <img class="img-fluid m-2" src="${data.data.image_link[0]}" alt="">
-                    <h5> ${data.data.input_output_examples[0].output}</h5>
-                    <p>${data.data.input_output_examples[0].output}</p>
+                    <h5 class="m-2"> ${data.data.input_output_examples[0].input}</h5>
+                    <p class="m-2">${data.data.input_output_examples[0].output}</p>
                 </div>
             </div>
             <div class="modal-footer">
