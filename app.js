@@ -39,7 +39,7 @@ function showAI(AIs) {
                         <h6>${AI.published_in}</h6>
                     </div>
                      <div> 
-                        <button data-bs-toggle="modal" data-bs-target="#AImodal" onclick="modal('${AI.id}')" class="details-btn mt-4"><i class="fa-solid fa-arrow-right"></i></button>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#AImodal" onclick="modal('${AI.id}')" class="details-btn mt-4"><i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
               </div>
@@ -64,33 +64,81 @@ function showAI(AIs) {
     }
 }
 
-function modal(id){
+const modal = async id =>{
 
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
 
-    fetch(url)
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data.data)
 
     const modalDiv = document.getElementById('modal')
     modalDiv.innerHTML = `
-    <div class="modal fade" id="AImodal" tabindex="-1" aria-labelledby="AImodalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="AImodalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade container-fluid" id="AImodal" tabindex="-1" aria-aria-labelledby="AImodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg container-fluid">
+        <div class="modal-content container-fluid">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="AImodalLabel">${data.data.tool_name}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="d-flex">
+                <div class="modal-body my-auto mod-left">
+                    <div>
+                        <h6> ${data.data.description} </h6>
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-1 bg-light m-2 p-2">
+                            <p>
+                                ${data.data.pricing[0].price}
+                            </p>
+                            <p>
+                                ${data.data.pricing[0].plan}
+                            </p>
+                        </div>
+                        <div class="p-1 bg-light m-2 p-2">
+                            <p>
+                                ${data.data.pricing[1].price}
+                            </p>
+                            <p>
+                                ${data.data.pricing[1].plan}
+                            </p>
+                        </div>
+                        <div class="p-1 bg-light m-2 p-2">
+                            <p>
+                                ${data.data.pricing[2].price}
+                            </p>
+                            <p>
+                                ${data.data.pricing[2].plan}
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h3>Features</h3>
+                            <ul>
+                                <li>${data.data.features[1].feature_name}</li>
+                                <li>${data.data.features[2].feature_name}</li>
+                                <li>${data.data.features[3].feature_name}</li>
+                            </ul>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <img class="img-fluid m-2" src="${data.data.image_link[0]}" alt="">
+                    <h5> ${data.data.input_output_examples[0].output}</h5>
+                    <p>${data.data.input_output_examples[0].output}</p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
     `;
 
 
@@ -100,4 +148,3 @@ function modal(id){
 
 
 loadAI();
-
