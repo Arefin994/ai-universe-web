@@ -25,13 +25,31 @@
             width: 435px;
             height: 300px;
         }
-        .modal-dialog{
+
+        .modal-dialog {
             max-width: 1200px;
         }
-        .mod-left{
+
+        .mod-left {
             background-color: #FEF7F7;
             border: 2px solid #EB5757;
             border-radius: 15px;
+        }
+
+        .fixed-top-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #EB5757;
+            color: white;
+            border-radius: 45px;
+            padding: 5px;
+        }
+
+        .fa-circle-x{
+            background-color: #EB5757;
+            color: white;
+            
         }
     </style>
     <!------------------
@@ -49,6 +67,32 @@
         <button type="button" class="btn btn-danger p-3 justify-content-center align-items-center mx-auto">Sort by
             Date</button>
     </div>
+    <section id="loader" class="d-flex justify-content-center mx-auto">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </section>
 
 
 
@@ -66,8 +110,27 @@
 
 
     <div id="modal" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal fade container-fluid" id="AImodal" tabindex="-1" aria-aria-labelledby="AImodalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg container-fluid">
+                <div class="modal-content container-fluid">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="AImodalLabel"></h1>
+                        <button type="button" class=" fixed-top-right modal-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="d-md-flex">
+                        <div id="modal-body" class="d-flex m-3 container-fluid">
 
-        <!-- Modal -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     </div>
@@ -96,68 +159,3 @@
         })
     </script>
 </body>
-
-</html>
-
-<div class="modal fade container-fluid" id="AImodal" tabindex="-1" aria-aria-labelledby="AImodalLabel" aria-hidden="true">
-    <div class="modal-dialog container-fluid">
-        <div class="modal-content container-fluid">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="AImodalLabel">${data.data.tool_name}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="d-flex">
-                <div class="modal-body">
-                    <div>
-                        <h2> ${data.data.description} </h2>
-                    </div>
-                    <div class="d-flex">
-                        <div class="p-1">
-                            <p>
-                                ${data.data.pricing[0].price}
-                            </p>
-                            <p>
-                                ${data.data.pricing[0].plan}
-                            </p>
-                        </div>
-                        <div class="p-1">
-                            <p>
-                                ${data.data.pricing[1].price}
-                            </p>
-                            <p>
-                                ${data.data.pricing[1].plan}
-                            </p>
-                        </div>
-                        <div class="p-1">
-                            <p>
-                                ${data.data.pricing[2].price}
-                            </p>
-                            <p>
-                                ${data.data.pricing[2].plan}
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <h3>Features</h3>
-                            <ul>
-                                <li>${data.data.features[1].feature_name}</li>
-                                <li>${data.data.features[2].feature_name}</li>
-                                <li>${data.data.features[3].feature_name}</li>
-                            </ul>
-                        </div>
-                        <div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <img src="${data.data.image_link[0]}" alt="">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
